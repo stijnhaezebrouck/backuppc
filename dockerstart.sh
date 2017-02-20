@@ -27,7 +27,7 @@ if [ $RESET_PERMISSIONS == 'true' ] ; then
   chown -R backuppc:www-data $BACKUPPC_CONFIG
   chown -R backuppc:backuppc $BACKUPPC_DATA
   chmod 775 $BACKUPPC_CONFIG $BACKUPPC_DATA
-  if [ ! -d $BACKUPPC_DATA/.ssh ] ; then
+  if [ -d $BACKUPPC_DATA/.ssh ] ; then
     chmod -R 0600 $BACKUPPC_DATA/.ssh/*
   fi
 fi
