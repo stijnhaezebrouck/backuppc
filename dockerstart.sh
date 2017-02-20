@@ -28,9 +28,8 @@ if [ $RESET_PERMISSIONS == 'true' ] ; then
   chown -R backuppc:backuppc $BACKUPPC_DATA
   chmod 775 $BACKUPPC_CONFIG $BACKUPPC_DATA
   if [ ! -d $BACKUPPC_DATA/.ssh ] ; then
-    mkdir -p $BACKUPPC_DATA/.ssh
+    chmod -R 0600 $BACKUPPC_DATA/.ssh/*
   fi
-  chmod -R 0600 $BACKUPPC_DATA/.ssh/*
 fi
 
 /usr/bin/supervisord

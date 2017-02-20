@@ -10,6 +10,10 @@ ENV START /usr/local/bin/dockerstart.sh
 
 
 RUN \
+    # create user/group according to https://wiki.archlinux.org/index.php/DeveloperWiki:UID_/_GID_Database
+    groupadd -g 126 && \
+    useradd -u 126 -d /var/lib/backuppc -g 126 -M -s /bin/bash backuppc && \
+
     # install required packages
     apt-get update -y && \
     echo "backuppc backuppc/reconfigure-webserver multiselect apache2" | debconf-set-selections && \
