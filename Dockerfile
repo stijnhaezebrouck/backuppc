@@ -5,7 +5,7 @@ ENV BACKUPPC_INITIAL_CONFIG /backuppc_initial_config
 ENV BACKUPPC_INITIAL_DATA /backuppc_initial_data
 ENV BACKUPPC_CONFIG /etc/backuppc
 ENV BACKUPPC_DATA /var/lib/backuppc
-ENV RESET_PERMISSIONS true
+ENV RESET_PERMISSIONS false
 ENV START /usr/local/bin/dockerstart.sh
 
 
@@ -26,7 +26,7 @@ RUN \
     sed -i 's/^localhost.*//g' $BACKUPPC_CONFIG/hosts && \
 
     # copy initial generated config and data
-    mkdir -p $BACKUPPC_INITIAL_CONFIG $BACKUPPC_INITIAL_DATA/.ssh && \
+    mkdir -p $BACKUPPC_INITIAL_CONFIG $BACKUPPC_INITIAL_DATA && \
     rsync -a /etc/backuppc/* $BACKUPPC_INITIAL_CONFIG && \
     rsync -a /var/lib/backuppc/* $BACKUPPC_INITIAL_DATA
 

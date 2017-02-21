@@ -17,8 +17,6 @@ fi
 if [[ ! "$(ls -A $BACKUPPC_DATA)" ]]; then
   echo "Data directory is empty, using defalt data..."
   mv -Z $BACKUPPC_INITIAL_DATA/* $BACKUPPC_DATA
-  echo "Creating a ssh keypair"
-  ssh-keygen -N '' -f $BACKUPPC_DATA/.ssh/id_rsa
 fi
 
 # Set proper permissions
@@ -27,9 +25,6 @@ if [ $RESET_PERMISSIONS == 'true' ] ; then
   chown -R backuppc:www-data $BACKUPPC_CONFIG
   chown -R backuppc:backuppc $BACKUPPC_DATA
   chmod 775 $BACKUPPC_CONFIG $BACKUPPC_DATA
-  if [ -d $BACKUPPC_DATA/.ssh ] ; then
-    chmod -R 0600 $BACKUPPC_DATA/.ssh/*
-  fi
 fi
 
 /usr/bin/supervisord
