@@ -13,10 +13,10 @@ if [[ ! "$(ls -A $BACKUPPC_CONFIG)" ]]; then
   mv -Z $BACKUPPC_INITIAL_CONFIG/* $BACKUPPC_CONFIG
 fi
 
-if [[ -f $BACKUPPC_CONFIG/.msmntprc ]]; then
+if [[ -f $BACKUPPC_CONFIG/.msmtprc ]]; then
   echo "Setting file permissions for .msmntprc"
-  chown backuppc:backuppc $BACKUPPC_CONFIG/.msmntprc
-  chmod 600 $BACKUPPC_CONFIG/.msmntprc
+  chown backuppc:backuppc $BACKUPPC_CONFIG/.msmtprc
+  chmod 600 $BACKUPPC_CONFIG/.msmtprc
 fi
 
 # Use directroy structure from package management if we dont have any
