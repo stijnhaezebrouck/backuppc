@@ -13,6 +13,12 @@ if [[ ! "$(ls -A $BACKUPPC_CONFIG)" ]]; then
   mv -Z $BACKUPPC_INITIAL_CONFIG/* $BACKUPPC_CONFIG
 fi
 
+if [[ -f $BACKUPPC_CONFIG/.msmntprc ]]; then
+  echo "Setting file permissions for .msmntprc"
+  chown backuppc:backuppc $BACKUPPC_CONFIG/.msmntprc
+  chmod 600 $BACKUPPC_CONFIG/.msmntprc
+fi
+
 # Use directroy structure from package management if we dont have any
 if [[ ! "$(ls -A $BACKUPPC_DATA)" ]]; then
   echo "Data directory is empty, using defalt data..."

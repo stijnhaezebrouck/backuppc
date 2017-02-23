@@ -1,3 +1,4 @@
 *.log
 backuppc-data
 backuppc-config
+.DS_Store

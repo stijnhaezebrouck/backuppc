@@ -12,7 +12,7 @@ ENV START /usr/local/bin/dockerstart.sh
 RUN \
     # create user/group according to https://wiki.archlinux.org/index.php/DeveloperWiki:UID_/_GID_Database
     groupadd -g 126 backuppc && \
-    useradd -u 126 -d /var/lib/backuppc -g 126 -M -s /bin/bash backuppc && \
+    useradd -u 126 -d /etc/backuppc -g 126 -M -s /bin/bash backuppc && \
 
     # install required packages
     apt-get update -y && \
@@ -23,8 +23,11 @@ RUN \
     htpasswd -b $BACKUPPC_CONFIG/htpasswd backuppc backuppc && \
 
     # Remove host 'localhost' from package generated config
-    sed -i 's/^localhost.*//g' $BACKUPPC_CONFIG/hosts && \
+    sed -i 's/^localhost.*//g' $BACKUPPC_CONFIG/hosts
 
+ADD .msmtprc.template.gmail /etc/backuppc/.msmtprc.template.gmail
+
+RUN \
     # copy initial generated config and data
     mkdir -p $BACKUPPC_INITIAL_CONFIG $BACKUPPC_INITIAL_DATA && \
     rsync -a /etc/backuppc/* $BACKUPPC_INITIAL_CONFIG && \
@@ -40,5 +43,7 @@ ADD dockerstart.sh $START
 # make start script executable
 RUN chmod ugo+x $START
 
+RUN apt-get install -y msmtp msmtp-mta
+ADD msmtprc /etc/msmtprc
 
 CMD $START
