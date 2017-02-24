@@ -5,6 +5,8 @@ ENV BACKUPPC_INITIAL_DATA /backuppc_initial_data
 ENV BACKUPPC_CONFIG /etc/backuppc
 ENV BACKUPPC_DATA /var/lib/backuppc
 ENV START /usr/local/bin/dockerstart.sh
+ENV RESET_PERMISSIONS false
+ENV TIMEZONE=UTC
 
 RUN \
     # create user/group according to https://wiki.archlinux.org/index.php/DeveloperWiki:UID_/_GID_Database
