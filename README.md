@@ -46,6 +46,7 @@ All contents in /etc/backuppc and /var/lib/backuppc should have ownership 126:12
 and readable/writable permissions for 126. This can be achieved by setting $RESET_PERMISSIONS=true
 
 The home directory for backuppc is /etc/backuppc and the shell is bash.
+Ownership in /etc/backuppc should be backuppc:www-data (www-data has gid 33)
 
 ### Port
 The port 80 is exposed. Access backuppc on http://dockerhost:8000/backuppc
@@ -61,4 +62,4 @@ When starting up the docker container with an empty configuration, a template
   application specific password)
 
 # Image owner
-Created by Stijn Haezebrouck for my own purposes, offer no warranties. 
+Created by Stijn Haezebrouck for my own purposes, offer no warranties.

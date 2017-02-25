@@ -28,7 +28,7 @@ fi
 # Set proper permissions
 if [ $RESET_PERMISSIONS == 'true' ] ; then
   echo "Setting permissions"
-  chown -R backuppc:backuppc $BACKUPPC_CONFIG
+  chown -R backuppc:www-data $BACKUPPC_CONFIG
   chown -R backuppc:backuppc $BACKUPPC_DATA
   chmod 775 $BACKUPPC_CONFIG $BACKUPPC_DATA
 fi

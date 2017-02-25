@@ -41,4 +41,7 @@ VOLUME $BACKUPPC_CONFIG
 ADD dockerstart.sh $START
 RUN chmod ugo+x $START
 
+#additional tools pre-mount scripts
+RUN apt-get install -y ksh curlftpfs sudo
+
 CMD $START
