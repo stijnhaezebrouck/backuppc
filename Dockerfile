@@ -6,6 +6,7 @@ ENV BACKUPPC_CONFIG /etc/backuppc
 ENV BACKUPPC_DATA /var/lib/backuppc
 ENV START /usr/local/bin/dockerstart.sh
 ENV RESET_PERMISSIONS false
+ENV POST_CONFIG /etc/backuppc/scripts/post-config.sh
 ENV TIMEZONE=UTC
 
 RUN \
@@ -42,6 +43,7 @@ ADD dockerstart.sh $START
 RUN chmod ugo+x $START
 
 #additional tools pre-mount scripts
-RUN apt-get install -y ksh curlftpfs sudo
+RUN apt-get install -y ksh curlftpfs
+RUN echo user_allow_other >> /etc/fuse.conf
 
 CMD $START

@@ -36,4 +36,9 @@ fi
 echo $TIMEZONE > /etc/timezone
 dpkg-reconfigure -f noninteractive tzdata
 
+
+if [[ -f $POST_CONFIG ]]; then
+  chmod a+x $POST_CONFIG
+  $POST_CONFIG
+fi
 /usr/bin/supervisord

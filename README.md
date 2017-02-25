@@ -61,5 +61,9 @@ When starting up the docker container with an empty configuration, a template
   That file contains a sample configuration for gmail (when using 2-step auth, use an
   application specific password)
 
+### Additional configuration
+If script /etc/backuppc/scripts/post-config.sh exists, it will be executed as root 
+prior to starting backkup. Its a hook to perform additional configuration.
+
 # Image owner
 Created by Stijn Haezebrouck for my own purposes, offer no warranties.
